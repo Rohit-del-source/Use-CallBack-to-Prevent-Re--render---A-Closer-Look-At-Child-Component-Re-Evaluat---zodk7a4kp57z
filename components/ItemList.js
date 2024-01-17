@@ -31,8 +31,9 @@ const IndexPage = () => {
         <div>
            
             <button onClick={addItem}>Add Item</button>
-            <p>{message}</p>
+           
             <ItemList items={items} />
+            <p>{message}</p>
         </div>
     );
 };
