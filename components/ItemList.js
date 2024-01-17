@@ -11,21 +11,23 @@ function ItemList({ items }) {
 }
 
 const IndexPage = () => {
-    const [items, setItems] = React.useState([]);
+    const [items, setItems] = useState([]);
     const [message, setMessage] = useState("");
 
     const addItem = useCallback(() => {
         setItems((prevItems) => [...prevItems, `Item ${prevItems.length + 1}`]);
         setMessage("Item added successfully!");
-
-        // Clear the message after 3 seconds
-        const timeoutId = setTimeout(() => {
-            setMessage("");
-        }, 3000);
-
-        // Cleanup the timeout to avoid memory leaks
-        return () => clearTimeout(timeoutId);
     }, []);
+
+    useEffect(() => {
+        if (message) {
+            const timeoutId = setTimeout(() => {
+                setMessage("");
+            }, 3000);
+
+            return () => clearTimeout(timeoutId);
+        }
+    }, [message]);
 
     return (
         <div>
