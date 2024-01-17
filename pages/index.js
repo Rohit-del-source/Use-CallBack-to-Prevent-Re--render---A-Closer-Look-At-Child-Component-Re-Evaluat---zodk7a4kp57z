@@ -9,7 +9,7 @@ export default function Home() {
 
     return (
         <div>
-            <button >Add Item</button>
+            {/* <button >Add Item</button> */}
             <ItemList items={items} />
             {message && <p id='message'>{message}</p>}
         </div>
