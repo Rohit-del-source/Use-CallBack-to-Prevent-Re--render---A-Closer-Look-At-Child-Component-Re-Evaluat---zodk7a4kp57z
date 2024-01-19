@@ -1,17 +1,21 @@
-import { useState, useCallback } from 'react';
-import ItemList from '../components/ItemList';
+import { useState, useCallback } from "react";
+import ItemList from "../components/ItemList";
 
 export default function Home() {
-    const [items, setItems] = useState([]);
-    const [message, setMessage] = useState('');
+  const [items, setItems] = useState([]);
+  const [message, setMessage] = useState("");
 
-    
+  const addItem = useCallback(() => {
+    setItems([...items, `Item ${items.length + 1}`]);
+    setMessage("Item added successfully!");
+    setTimeout(() => setMessage(""), 3000);
+  }, [items]);
 
-    return (
-        <div>
-            {/* <button >Add Item</button> */}
-            <ItemList items={items} />
-            {message && <p id='message'>{message}</p>}
-        </div>
-    );
+  return (
+    <div>
+      <button onClick={addItem}>Add Item</button>
+      <ItemList items={items} />
+      {message && <p id="message">{message}</p>}
+    </div>
+  );
 }
